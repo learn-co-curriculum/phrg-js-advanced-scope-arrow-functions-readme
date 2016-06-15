@@ -24,8 +24,6 @@ var arrowFunction = () => {
 
 These are called [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in reference to the little `=>` that characterizes them.
 
-**NOTE**: Remember when we warned that `=>` isn't a comparison operator? This is where those keystrokes come in.
-
 You can call arrow functions just like regular functions.
 
 ``` javascript
