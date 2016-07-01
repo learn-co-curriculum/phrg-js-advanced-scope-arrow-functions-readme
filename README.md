@@ -72,20 +72,6 @@ square(4) // 16
 
 Just omit the curly braces from around the function body.
 
-## No More `arguments`
-
-Arrow functions do not, however, receive an `arguments` object.
-
-``` javascript
-var arrowFunction = () => {
-  console.log(arguments)
-}
-
-arrowFunction() // `Uncaught ReferenceError: arguments is not defined`
-```
-
-This means that we need to define any arguments that an arrow function expects to receive. (But we're probably doing that anyway, right?)
-
 ## Anonymity's the Name of the Game
 
 All arrow functions are anonymous. Regular functions take their names from their identifiers.
