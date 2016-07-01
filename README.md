@@ -12,6 +12,8 @@ JavaScript Arrow Functions
 
 You're familiar by now with the standard `function foo() { return 'bar' }` style of functions in JavaScript. What if I told you that ES6 introduced a new way of writing functions that's terser and more readable? (It has a few other perks that we'll go over, too.)
 
+>Note: ES6 is the newest version of JavaScript to be released. It offers some new syntax, but it is not yet supported by all browsers.
+
 Would you believe me? Have you seen these guys:
 
 ``` javascript
@@ -155,3 +157,5 @@ Gross.
 ## Resources
 
 - [MDN: Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/javascript-arrow-functions'>Arrow Functions</a> on Learn.co and start learning to code for free.</p>
