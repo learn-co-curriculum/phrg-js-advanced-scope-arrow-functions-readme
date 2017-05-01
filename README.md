@@ -85,9 +85,7 @@ iHaveAName.name // 'iHaveAName'
 But arrow functions don't have identifiers, so they're always anonymous.
 
 ``` javascript
-var anonymous = () => {}
-
-anonymous.name // ''
+(() => {}).name // ''
 ```
 
 ## Use Cases
