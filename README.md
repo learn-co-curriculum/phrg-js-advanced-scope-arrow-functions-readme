@@ -164,6 +164,10 @@ person.greet()
 ```
 Notice that in both cases, the arrow functions retain the context that they were defined in.  In the first case, the arrow function was declared in the `greet` method, where the `this` value equaled person.  So the `this` value of the arrow function also was that `person` object.  In the second case, the arrow function was not declared not via a function called, but simply when the code was run, in the global scope.  Therefore, because the `this` value of an arrow function is the context the function was defined in, the `this` value returned window.
 
+### Which is preferred
+
+At this point, you may be wondering whether you should be using an arrow function or stick with `bind`, `call` and `apply`.  Certainly, both are correct.  However, whether to using arrow functions is really a question of whether the function should be anonymous.  Prime candidates for anonymous functions are are our callbacks to iterators: the callbacks that we pass into the `map`, `filter`, and `forEach` functions can be anonymous, especially if you find yourself wrestling with `this` as they are an argument to a different function.  More complicated functions that will be reused are better candidates to named functions.  This is one of those things that is more an art than a science and that you will and your teammates will develop their own preferences for over time.   
+
 ### Summary
 
 In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax.  We saw that if we do not declare the function with brackets, that we do not to provide an explicit return value to the function.  Finally, we saw that the `this` value of an arrow function equals the `this` value at the time the function is declared.  
