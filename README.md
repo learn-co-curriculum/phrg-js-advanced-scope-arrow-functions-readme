@@ -13,6 +13,14 @@ You're familiar by now with the standard `function foo() { return 'bar' }` style
 Well, there is another way to write functions in JavaScript called arrow functions:
 
 ``` javascript
+// using our old standard function
+
+let arrowFunction = function() {
+  return "arrow Functions are great!"
+}
+
+
+// updating to use an arrow function
 let arrowFunction = () => {
   return 'Arrow functions are great!'
 };
