@@ -106,7 +106,24 @@ As we saw earlier, when a function is invoked from another function, the `this` 
   // Here, we use two parentheses to invoke the returned function from person.greet()
 ```
 
-As you can see, `this` becomes global from the inner function because that inner function is not a method of `person`.  However, if we use an arrow function, the inner function retains the scope of the method it was declared in.  Let's see it.
+As you can see, `this` becomes global from the inner function because that inner function is not a method of `person`.  Now we could have used our old `bind` method to fix something like this.
+
+```js
+
+let person = {
+  firstName: 'bob',
+  greet: function(){
+    return function reallyGreet(){
+      return `Hi, I'm ${this.firstName}`
+    }.bind(this)
+  }
+}
+person.greet()()
+// Hi, I'm bob
+// Here, we use two parentheses to invoke the returned function from person.greet()
+```
+
+As a quick review, in the above code, calling `person.greet()` executes the `greet` method which declares the `reallyGreet` function and binds the context of that function to `person`. Another way to achieve the same result of setting the inner function's context to `person` is with an arrow function.  If we use an arrow function, the inner function retains the scope of the method it was declared in.  Let's see it.
 
 ```js
 
@@ -121,6 +138,8 @@ As you can see, `this` becomes global from the inner function because that inner
   person.greet()()
   // "Hi, I'm bob"
 ```
+
+As you can see this inner arrow function retains the scope of the outer `greet` method.  Because the outer `greet` method's context is `person`, the inner function's context is also `person`.
 
 Let's see this same principle as it applies to callbacks.  Let's see the difference between passing a regular function and an arrow function to our `map` method.
 
