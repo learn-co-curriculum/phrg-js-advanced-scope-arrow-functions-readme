@@ -1,6 +1,7 @@
 tags:
-  - a tag
+  - arrow functions
+  - functions
 languages:
-  - a language
+  - javascript
 resources: 
-  - 0
+  - 1
