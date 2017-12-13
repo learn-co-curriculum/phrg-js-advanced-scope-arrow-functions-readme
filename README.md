@@ -14,9 +14,8 @@ Well, there is another way to write functions in JavaScript called arrow functio
 
 ``` javascript
 // using our old standard function
-
-let arrowFunction = function() {
-  return "arrow Functions are great!"
+let oldStandardFunction = function() {
+  return "old standard functions rule!"
 }
 
 
@@ -141,7 +140,7 @@ As a quick review, in the above code, calling `person.greet()` executes the `gre
 
 As you can see this inner arrow function retains the scope of the outer `greet` method.  Because the outer `greet` method's context is `person`, the inner function's context is also `person`.
 
-Let's see this same principle as it applies to callbacks.  Let's see the difference between passing a regular function and an arrow function to our `map` method.
+Let's see this same principle as it applies to callbacks.  Both the following examples use an arrow function as the callback for `map`, but notice the different context.
 
 ```js
 
@@ -162,7 +161,7 @@ person.greet()
 // window
 // window
 ```
-Notice that in both cases, the arrow function retains the context that it is defined in.  In the first case, the arrow function is declared in the `greet` method, where the `this` value equals `person`.  Therefore the `this` value of the arrow function is also `person`.  In the second case, the arrow function is not declared within a method, but rather passed as an argument when the code is run (the callback function for `map`), which means its context is the global scope.  Therefore, its `this` value is `window`.
+In both cases, the arrow function retains the context that it is defined in.  In the first case, the arrow function is declared in the `greet` method, where the `this` value equals `person`.  Therefore the `this` value of the arrow function is also `person`.  In the second case, the arrow function is not declared within a method, but rather passed as an argument when the code is run (the callback function for `map`), which means its context is the global scope.  Therefore, its `this` value is `window`.
 
 ### Which is preferred
 
