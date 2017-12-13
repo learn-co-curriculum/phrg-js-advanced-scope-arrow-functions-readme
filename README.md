@@ -165,7 +165,7 @@ In both cases, the arrow function retains the context that it is defined in.  In
 
 ### Which is preferred
 
-So which is better, an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, an arrow function cannot be used to declare a method for an object.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
+So which is better, an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, arrow functions are not ideal for delclaring object methods, as they will not pick up the object as the `this` context.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
 
 ### Summary
 
