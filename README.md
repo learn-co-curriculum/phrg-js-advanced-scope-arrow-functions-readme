@@ -75,20 +75,27 @@ But arrow functions don't have identifiers, so they're always anonymous.
 (() => {}).name // ''
 ```
 
-Instead, we can set a pointer to an arrow function, or pass an arrow function through as an argument to another function:
+We can set a pointer to an arrow function, or pass an arrow function through as an argument to another function:
 
 ```javascript
-  const square = (n) => n * n
-  // note that the function is anonymous, but we point the variable square to the anonymous arrow function
+  const square = (n => n * n)
+  // note that while the function is anonymous, we have assigned it to the variable 'square'
 
-  [1, 2, 3].map((n) => n * n )
+  [1, 2, 3].map(n => n * n)
   // [1, 4, 9]
-  // The lightweight nature of arrow functions makes them useful for callbacks
+  // The shorthand nature of arrow functions makes them useful for inline definitions
+
+  [1, 2, 3].map(square)
+  // [1, 4, 9]
 ```
 
-## Arrow Functions and This
+It is important to remember that, in JavaScript, functions are 'first class objects'. They can be passed, declared, handled, and have properties and methods just like any other object.
 
-As we saw earlier, when a function is invoked from another function, the `this` value goes to global.  Let's see this again.
+We know that a function declaration (not invocation!) has a return value itself because we just assigned it to the variable `square` above. **The return value of a function declaration is a pointer  to the function object itself.**
+
+## Arrow Functions and 'this'
+
+As we saw earlier, when a function is invoked from another function, the `context` or `this` value is global.  Let's see that again:
 
 ```js
 
