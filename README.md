@@ -14,13 +14,13 @@ Well, there is another way to write functions in JavaScript called arrow functio
 
 ``` javascript
 // using our old standard function
-let oldStandardFunction = function() {
+const oldStandardFunction = function() {
   return "old standard functions rule!"
 }
 
 
 // updating to use an arrow function
-let arrowFunction = () => {
+const arrowFunction = () => {
   return 'Arrow functions are great!'
 };
 ```
@@ -36,7 +36,7 @@ arrowFunction() // 'Arrow functions are great!'
 Let's piece together how they work.
 
 ``` javascript
-let arrowFunction = () => {
+const arrowFunction = () => {
   return 'Arrow functions are great!'
 };
 ```
@@ -46,15 +46,15 @@ Just like a regular function you've seen before, the body of an arrow function i
 In a divergence from regular functions, if we omit the curly braces from around the function body, arrow functions give us implicit returns.  But this only works if we write our arrow functions without brackets.  
 
 ``` javascript
-let square = (n) => n * n
+const square = (n) => n * n
 
 square(3) // 9
 
-let notSquare = (n) => { n * n }
+const notSquare = (n) => { n * n }
 notSquare(3)
 // undefined
 
-let backToSquared = (n) => { return n * n }
+const backToSquared = (n) => { return n * n }
 backToSquared(3)
 // 9
 
@@ -78,7 +78,7 @@ But arrow functions don't have identifiers, so they're always anonymous.
 Instead, we can set a pointer to an arrow function, or pass an arrow function through as an argument to another function:
 
 ```javascript
-  let square = (n) => n * n
+  const square = (n) => n * n
   // note that the function is anonymous, but we point the variable square to the anonymous arrow function
 
   [1, 2, 3].map((n) => n * n )
@@ -92,7 +92,7 @@ As we saw earlier, when a function is invoked from another function, the `this` 
 
 ```js
 
-  let person = {
+  const person = {
     firstName: 'bob',
     greet: function(){
       return function reallyGreet(){
@@ -109,7 +109,7 @@ As you can see, `this` becomes global from the inner function because that inner
 
 ```js
 
-let person = {
+const person = {
   firstName: 'bob',
   greet: function(){
     return function reallyGreet(){
@@ -126,7 +126,7 @@ As a quick review, in the above code, calling `person.greet()` executes the `gre
 
 ```js
 
-  let person = {
+  const person = {
     firstName: 'bob',
     greet: function(){
       return () => {
@@ -144,7 +144,7 @@ Let's see this same principle as it applies to callbacks.  Both the following ex
 
 ```js
 
-let person = {
+const person = {
   firstName: 'bob',
   greet: function(){
     return [1, 2, 3].map(() => this )
