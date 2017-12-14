@@ -172,11 +172,11 @@ In both cases, the arrow function retains the context that it is defined in. In 
 
 ### Which is preferred
 
-So which is better, an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, arrow functions are not ideal for delclaring object methods, as they will not pick up the object as the `this` context.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
+So which is better: an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different and each has its uses.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, arrow functions are not ideal for declaring object methods, as they will not pick up the object as the `this` context.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
 
 ### Summary
 
-In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax.  We saw that if we do not declare the function with brackets, then we do not need to provide an explicit return value to the function (provided that the function does not need to be longer than one line).  Finally, we saw that the `this` value of an arrow function equals the `this` value at the time the function is declared.  
+In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax. We saw that if we do not declare the function with brackets, then we do not need to provide an explicit return value to the function.  Finally, we saw that the `this` value of an arrow function is the same as the `this` value of its enclosing object.
 
 ## Resources
 
