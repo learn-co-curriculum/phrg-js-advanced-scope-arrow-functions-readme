@@ -14,20 +14,20 @@ Well, there is another way to write functions in JavaScript called arrow functio
 
 ``` javascript
 // using our old standard function
-let oldStandardFunction = function() {
+const oldStandardFunction = function() {
   return "old standard functions rule!"
 }
 
 
 // updating to use an arrow function
-let arrowFunction = () => {
+const arrowFunction = () => {
   return 'Arrow functions are great!'
 };
 ```
 
 These are called [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in reference to the little `=>` that characterizes them.
 
-Arrow functions are called just like regular functions.
+Arrow functions are invoked just like regular functions.
 
 ``` javascript
 arrowFunction() // 'Arrow functions are great!'
@@ -36,25 +36,25 @@ arrowFunction() // 'Arrow functions are great!'
 Let's piece together how they work.
 
 ``` javascript
-let arrowFunction = () => {
+const arrowFunction = () => {
   return 'Arrow functions are great!'
 };
 ```
 
-Just like a regular function you've seen before, the body of an arrow function is declared inside the `{ }` brackets.  The arguments to the function go in the parentheses before the arrow.  And an arrow goes in between the brackets and the parentheses.  
+Just like a regular function you've seen before, the body of an arrow function is declared inside the `{ }` brackets. The function parameters are declared in the parentheses before the arrow, which points to the body of the function.  
 
-In a divergence from regular functions, if we omit the curly braces from around the function body, arrow functions give us implicit returns.  But this only works if we write our arrow functions without brackets.  
+In a divergence from regular functions, if we omit the curly braces from around the function body (or replace them with parentheses), arrow functions give us implicit returns.  This only works if we write our arrow functions without brackets.
 
 ``` javascript
-let square = (n) => n * n
+const square = (n) => (n * n)
 
 square(3) // 9
 
-let notSquare = (n) => { n * n }
+const notSquare = (n) => { n * n }
 notSquare(3)
 // undefined
 
-let backToSquared = (n) => { return n * n }
+const backToSquared = (n) => { return n * n }
 backToSquared(3)
 // 9
 
@@ -75,27 +75,34 @@ But arrow functions don't have identifiers, so they're always anonymous.
 (() => {}).name // ''
 ```
 
-Instead, we can set a pointer to an arrow function, or pass an arrow function through as an argument to another function:
+We can set a pointer to an arrow function, or pass an arrow function through as an argument to another function:
 
 ```javascript
-  let square = (n) => n * n
-  // note that the function is anonymous, but we point the variable square to the anonymous arrow function
+  const square = (n => n * n)
+  // note that while the function is anonymous, we have assigned it to the variable 'square'
 
-  [1, 2, 3].map((n) => n * n )
+  [1, 2, 3].map(n => n * n)
   // [1, 4, 9]
-  // The lightweight nature of arrow functions makes them useful for callbacks
+  // The shorthand nature of arrow functions makes them useful for inline definitions
+
+  [1, 2, 3].map(square)
+  // [1, 4, 9]
 ```
 
-## Arrow Functions and This
+It is important to remember that, in JavaScript, functions are 'first class objects'. They can be passed, declared, handled, and have properties and methods just like any other object.
 
-As we saw earlier, when a function is invoked from another function, the `this` value goes to global.  Let's see this again.
+We know that a function declaration (not invocation!) has a return value itself because we just assigned it to the variable `square` above. **The return value of a function declaration is a pointer to the function object itself.**
+
+## Arrow Functions and 'this'
+
+As we saw earlier, when a function is invoked from another function, the `context` or `this` value is global.  Let's see that again:
 
 ```js
 
-  let person = {
+  const person = {
     firstName: 'bob',
-    greet: function(){
-      return function reallyGreet(){
+    greet: function() {
+      return function reallyGreet() {
         return `Hi, I'm ${this.firstName}`
       }
     }
@@ -105,14 +112,14 @@ As we saw earlier, when a function is invoked from another function, the `this` 
   // Here, we use two parentheses to invoke the returned function from person.greet()
 ```
 
-As you can see, `this` becomes global from the inner function because that inner function is not a method of `person`.  Now we could have used our old `bind` method to fix something like this.
+As you can see, `this` does not know what `.firstName` is because it has reverted to global scope where `.firstName` is undefined. We see that the inner function is not in the same context as the `person` object. Assuming we want them to have access to the same context, (or `this` value), how can we fix this? In steps `bind`!
 
 ```js
 
-let person = {
+const person = {
   firstName: 'bob',
-  greet: function(){
-    return function reallyGreet(){
+  greet: function() {
+    return function reallyGreet() {
       return `Hi, I'm ${this.firstName}`
     }.bind(this)
   }
@@ -122,13 +129,13 @@ person.greet()()
 // Here, we use two parentheses to invoke the returned function from person.greet()
 ```
 
-As a quick review, in the above code, calling `person.greet()` executes the `greet` method which declares the `reallyGreet` function and binds the context of that function to `person`. Another way to achieve the same result of setting the inner function's context to `person` is with an arrow function.  If we use an arrow function, the inner function retains the scope of the method it was declared in.  Let's see it.
+As a quick review, in the above code, calling `person.greet()` executes the `greet` method which returns the `reallyGreet` function and binds the context of that function to `person`. Another way to achieve the same result of setting the inner function's context to `person` is with an arrow function.  If we use an arrow function, the inner function retains the scope of the method it was declared in.  Let's see it:
 
 ```js
 
-  let person = {
+  const person = {
     firstName: 'bob',
-    greet: function(){
+    greet: function() {
       return () => {
         return `Hi, I'm ${this.firstName}`
       }
@@ -138,16 +145,16 @@ As a quick review, in the above code, calling `person.greet()` executes the `gre
   // "Hi, I'm bob"
 ```
 
-As you can see this inner arrow function retains the scope of the outer `greet` method.  Because the outer `greet` method's context is `person`, the inner function's context is also `person`.
+As you can see, this inner arrow function retains the context of the outer `greet` method.  Just as the outer `greet` method's context is `person`, the inner function's context is also `person`. The arrow function has performed `.bind(this)` for us behind the scenes.
 
-Let's see this same principle as it applies to callbacks.  Both the following examples use an arrow function as the callback for `map`, but notice the different context.
+Let's see this same principle as it applies to callbacks. Both the following examples use an arrow function as the callback for `map`, but notice the different context:
 
 ```js
 
-let person = {
+const person = {
   firstName: 'bob',
-  greet: function(){
-    return [1, 2, 3].map(() => this )
+  greet: function() {
+    return [1, 2, 3].map(() => this)
   }
 }
 
@@ -161,15 +168,15 @@ person.greet()
 // window
 // window
 ```
-In both cases, the arrow function retains the context that it is defined in.  In the first case, the arrow function is declared in the `greet` method, where the `this` value equals `person`.  Therefore the `this` value of the arrow function is also `person`.  In the second case, the arrow function is not declared within a method, but rather passed as an argument when the code is run (the callback function for `map`), which means its context is the global scope.  Therefore, its `this` value is `window`.
+In both cases, the arrow function retains the context that it is defined in. In the first case, the arrow function is defined in the `greet` method, where the `this` value references `person`.  Therefore, the `this` value within the arrow function is also `person`.  In the second case, the context within the arrow function is the global scope. Therefore, its `this` value is whatever the global scope is. In the case of the browser, `window`!
 
 ### Which is preferred
 
-So which is better, an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, arrow functions are not ideal for delclaring object methods, as they will not pick up the object as the `this` context.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
+So which is better: an arrow function or a good old-fashioned function expression?  Drumroll, please... and the answer is, "Neither!"  They are different and each has its uses.  Arrow functions bring some nice advantages to the table, but they also have their limitations.  For example, arrow functions are not ideal for declaring object methods, as they will not pick up the object as the `this` context.  Also, arrow functions cannot be used as constructors.  As you build your JavaScript skills, you will develop a feel for when to use them.  Please make sure to explore the MDN resource listed below for further details.
 
 ### Summary
 
-In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax.  We saw that if we do not declare the function with brackets, then we do not need to provide an explicit return value to the function (provided that the function does not need to be longer than one line).  Finally, we saw that the `this` value of an arrow function equals the `this` value at the time the function is declared.  
+In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax. We saw that if we do not declare the function with brackets, then we do not need to provide an explicit return value to the function.  Finally, we saw that the `this` value of an arrow function is the same as the `this` value of its enclosing object.
 
 ## Resources
 
