@@ -27,7 +27,7 @@ let arrowFunction = () => {
 
 These are called [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in reference to the little `=>` that characterizes them.
 
-Arrow functions are called just like regular functions.
+Arrow functions are invoked just like regular functions.
 
 ``` javascript
 arrowFunction() // 'Arrow functions are great!'
