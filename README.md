@@ -41,12 +41,12 @@ const arrowFunction = () => {
 };
 ```
 
-Just like a regular function you've seen before, the body of an arrow function is declared inside the `{ }` brackets.  The parameters to the function go in the parentheses before the arrow.  And an arrow goes in between the brackets and the parentheses.  
+Just like a regular function you've seen before, the body of an arrow function is declared inside the `{ }` brackets. The function parameters are declared in the parentheses before the arrow, which points to the body of the function.  
 
-In a divergence from regular functions, if we omit the curly braces from around the function body, arrow functions give us implicit returns.  But this only works if we write our arrow functions without brackets.  
+In a divergence from regular functions, if we omit the curly braces from around the function body (or replace them with parentheses), arrow functions give us implicit returns.  This only works if we write our arrow functions without brackets.
 
 ``` javascript
-const square = (n) => n * n
+const square = (n) => (n * n)
 
 square(3) // 9
 
