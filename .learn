@@ -5,3 +5,5 @@ languages:
   - javascript
 resources: 
   - 1
+
+parent_template: git@github.com:learn-co-curriculum/js-advanced-scope-arrow-functions-readme.git

@@ -183,3 +183,4 @@ In the lesson above, we saw that arrow functions allow us to declare functions w
 - [MDN: Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 <p class='util--hide'>View <a href='https://learn.co/lessons/javascript-arrow-functions'>Arrow Functions</a> on Learn.co and start learning to code for free.</p>
+<p data-visibility='hidden'>PHRG JavaScript Arrow Functions</p>
