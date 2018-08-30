@@ -178,6 +178,9 @@ So which is better: an arrow function or a good old-fashioned function expressio
 
 In the lesson above, we saw that arrow functions allow us to declare functions with minimal syntax. We saw that if we do not declare the function with brackets, then we do not need to provide an explicit return value to the function.  Finally, we saw that the `this` value of an arrow function is the same as the `this` value of its enclosing object.
 
+## Does this need an update?
+ Please open a [GitHub issue](https://github.com/learn-co-curriculum/phrg-js-advanced-scope-arrow-functions-readme/issues) or [pull-request](https://github.com/learn-co-curriculum/phrg-js-advanced-scope-arrow-functions-readme/pulls). Provide a detailed description that explains the issue you have found or the change you are proposing. Then "@" mention your instructor on the issue or pull-request, and send them a link via Connect.
+
 ## Resources
 
 - [MDN: Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
